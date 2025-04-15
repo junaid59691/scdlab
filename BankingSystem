@@ -1,0 +1,43 @@
+public class BankingSystem {
+    private double accountBalance = 1000;
+
+    public void withdrawAmount(double amount) {
+        try {
+            if (amount < 0) {
+                throw new IllegalArgumentException("Invalid withdrawal amount. Amount must be positive.");
+            }
+            if (accountBalance - amount >= 0) {
+                accountBalance -= amount;
+                System.out.println("You have withdrawn: " + amount);
+            } else {
+                throw new IllegalStateException("Insufficient balance for withdrawal.");
+            }
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+  
+    public void depositAmount(double amount) {
+        try {
+   if (amount <= 0) {
+ throw new IllegalArgumentException("Invalid deposit amount. Amount must be positive.");
+ }
+
+accountBalance += amount;
+System.out.println("You have deposited: " + amount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void displayBalance() {
+        System.out.println("Your balance is: " + accountBalance);
+    }
+
+    public static void main(String[] args) {
+        BankingSystem bank = new BankingSystem();
+        bank.withdrawAmount(500); 
+        bank.depositAmount(100);   
+        bank.displayBalance();   
+    }
+}
